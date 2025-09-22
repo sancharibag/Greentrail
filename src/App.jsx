@@ -42,10 +42,9 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay (Styled like your Navbar example) */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="fixed inset-0 bg-cyan-950 z-50 flex flex-col items-center justify-center px-6">
-          {/* Close Button */}
           <button
             className="absolute top-6 right-6 text-white text-3xl font-bold"
             onClick={() => setIsOpen(false)}
@@ -53,12 +52,10 @@ export default function App() {
             ✖
           </button>
 
-          {/* Logo at top */}
           <div className="mb-10">
             <img src="./logo2.png" alt="Logo" className="w-32 animate-pulse" />
           </div>
 
-          {/* Mobile Links */}
           <ul className="space-y-6 text-center">
             {menuItems.map((item, index) => (
               <li key={index}>
