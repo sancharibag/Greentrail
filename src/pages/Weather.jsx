@@ -1,133 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-// Fixed images and suggestions for each season
+// Suggestions grouped into categories
 const suggestions = {
-  winter: [
-    { 
-      title: "Forest Trek 🌲", 
-      desc: "Explore Netarhat forests", 
-      img: "https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1200&q=60" 
-    },
-    { 
-      title: "Waterfalls 💦", 
-      desc: "Visit Hundru & Dassam falls", 
-      img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=60" 
-    },
-    { 
-      title: "Campfire 🔥", 
-      desc: "Perfect for chilly evenings", 
-      img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=60" 
-    },
+  Adventure: [
+    { icon: "🌲", title: "Forest Trek", desc: "Explore Netarhat forests and hidden trails" },
+    { icon: "💦", title: "Waterfalls", desc: "Visit Hundru & Dassam falls for breathtaking views" },
+    { icon: "🐘", title: "Wildlife Safari", desc: "Betla National Park safari and eco adventures" },
   ],
-  summer: [
-    { 
-      title: "City Tours 🏙️", 
-      desc: "Ranchi & heritage spots", 
-      img: "https://images.unsplash.com/photo-1486308510493-aa64833636b3?auto=format&fit=crop&w=1200&q=60" 
-    },
-    { 
-      title: "Temple Visits 🛕", 
-      desc: "Baidhyanath Dham, Sun temple", 
-      img: "https://images.unsplash.com/photo-1526481280694-3f15a2f67fa8?auto=format&fit=crop&w=1200&q=60" 
-    },
-    { 
-      title: "Wildlife 🐘", 
-      desc: "Betla National Park safari", 
-      img: "https://images.unsplash.com/photo-1516908205727-40afad9449a5?auto=format&fit=crop&w=1200&q=60" 
-    },
+  Culture: [
+    { icon: "🛕", title: "Temple Visits", desc: "Discover Baidhyanath Dham & Sun temple" },
+    { icon: "🎶", title: "Festivals", desc: "Tribal dance, local fairs & cultural events" },
+    { icon: "🏛️", title: "Heritage Tours", desc: "Explore Ranchi & historic heritage spots" },
   ],
-  rainy: [
-    { 
-      title: "Lakeside ⛵", 
-      desc: "Relax at Patratu valley", 
-      img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=60" 
-    },
-    { 
-      title: "Festivals 🎶", 
-      desc: "Enjoy tribal dance & fairs", 
-      img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=60" 
-    },
-    { 
-      title: "Eco Stay 🛖", 
-      desc: "Stay in green homestays", 
-      img: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=60" 
-    },
+  Gastronomy: [
+    { icon: "🍲", title: "Traditional Cuisine", desc: "Taste local Jharkhand dishes & delicacies" },
+    { icon: "🍫", title: "Handmade Sweets", desc: "Try regional sweets and chocolates" },
+    { icon: "🥘", title: "Eco Stays Dining", desc: "Farm-to-table food experiences" },
   ],
-};
-
-const sizes = ["h-64", "h-80", "h-96"];
-
-// Gradient backgrounds for each season
-const bgColors = {
-  winter: "from-blue-800 via-blue-900 to-black",
-  summer: "from-yellow-600 via-yellow-700 to-orange-800",
-  rainy: "from-green-700 via-green-900 to-blue-900",
+  Wellness: [
+    { icon: "🔥", title: "Campfire Nights", desc: "Perfect relaxation under starlit skies" },
+    { icon: "⛵", title: "Lakeside Retreat", desc: "Unwind at Patratu valley with calm waters" },
+    { icon: "🛖", title: "Eco Stay", desc: "Stay in serene, green homestays" },
+  ],
 };
 
 export default function Weather() {
-  const [weather, setWeather] = useState(null);
-
-  useEffect(() => {
-    // Simulate temperature for demo
-    const simulatedWeather = { main: { temp: Math.floor(Math.random() * 40) } };
-    setTimeout(() => setWeather(simulatedWeather), 500);
-  }, []);
-
-  // Determine highlighted season based on temperature
-  const getHighlighted = (temp) => {
-    if (temp < 15) return "winter";
-    if (temp < 30) return "summer";
-    return "rainy";
-  };
-
-  const highlighted = weather ? getHighlighted(weather.main.temp) : null;
-
-  // Render cards for a season
-  const renderCards = (season) =>
-    suggestions[season].map((card, i) => (
-      <div
-        key={`${season}-${i}`}
-        className={`relative overflow-hidden rounded-3xl shadow-2xl cursor-pointer transform transition duration-500 hover:scale-105 ${sizes[i % sizes.length]} ${
-          highlighted === season ? "border-4 border-green-500" : "border border-transparent"
-        }`}
-      >
-        <img
-          src={card.img}
-          alt={card.title}
-          className="w-full h-full object-cover brightness-75"
-        />
-        <div className="absolute inset-0 bg-black/50 p-6 flex flex-col justify-end">
-          <h3 className="text-2xl font-bold text-white mb-2">{card.title}</h3>
-          <p className="text-white/90">{card.desc}</p>
-          <div className="mt-4">
-            <button className="px-4 py-2 bg-green-500/80 text-white rounded-full hover:bg-green-600 transition">
-              Explore
-            </button>
-          </div>
-        </div>
-      </div>
-    ));
+  const [activeTab, setActiveTab] = useState("Adventure");
 
   return (
-    <div className="w-full">
-      {["winter", "summer", "rainy"].map((season) => (
-        <section
-          key={season}
-          className={`relative min-h-screen px-6 py-20 flex flex-col justify-start items-center bg-gradient-to-br ${bgColors[season]}`}
-        >
-          <h2 className="text-4xl font-bold mb-12 text-center text-white capitalize">
-            {season} Suggestions
-          </h2>
+    <section className="experiences py-20 bg-white" id="weatherwise">
+      <div className="container mx-auto px-6">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Weatherwise Suggestions</h2>
+          <p className="text-gray-600">
+            Activities and destinations tailored for your journey
+          </p>
+        </div>
 
-          <div className="relative z-10 w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {weather ? renderCards(season) : (
-              <p className="col-span-3 text-center text-2xl text-white/80">
-                Loading {season} suggestions...
-              </p>
-            )}
-          </div>
-        </section>
-      ))}
-    </div>
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 flex-wrap mb-10">
+          {Object.keys(suggestions).map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2 rounded-full border-2 font-medium transition-all ${
+                activeTab === tab
+                  ? "bg-red-500 text-white border-red-500 scale-105"
+                  : "bg-transparent text-red-500 border-red-500 hover:bg-red-500 hover:text-white"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {suggestions[activeTab].map((item, i) => (
+            <div
+              key={i}
+              className="experience-item text-center p-8 bg-gray-100 rounded-2xl shadow transition transform hover:-translate-y-2 hover:scale-105"
+            >
+              <div className="experience-icon w-16 h-16 mx-auto mb-4 bg-red-500 rounded-full flex items-center justify-center text-2xl text-white">
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+              <p className="text-gray-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
