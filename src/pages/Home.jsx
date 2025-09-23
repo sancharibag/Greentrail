@@ -8,11 +8,13 @@ const travelCards = [
     title: "Hotels",
     desc: "Find comfortable hotels easily",
     img: "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?auto=format&fit=crop&w=800&q=60",
+    link: "/hotels",
   },
   {
-    title: "Apartments",
-    desc: "Book modern apartments",
+    title: "Guides",
+    desc: "Book local guides for your journey",
     img: "https://images.unsplash.com/photo-1580584126965-1c8a9b524276?auto=format&fit=crop&w=800&q=60",
+    link: "/guides",
   },
   {
     title: "Car Rentals",
@@ -78,7 +80,7 @@ export default function Home() {
       of Jharkhand.
     </p>
     <Link
-      to="/marketplace"
+      to="/destinations"
       className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition"
     >
       Explore More
@@ -149,10 +151,20 @@ export default function Home() {
                 <h3 className="text-xl font-semibold">{card.title}</h3>
                 <p className="text-green-200 mt-1">{card.desc}</p>
                 <div className="mt-4">
-                  <button className="px-4 py-2 bg-green-500/80 text-white rounded-full hover:bg-green-600 transition">
-                    Explore
-                  </button>
-                </div>
+  {card.link ? (
+                    <Link
+                      to={card.link}
+                      className="px-4 py-2 bg-green-500/80 text-white rounded-full hover:bg-green-600 transition"
+                    >
+                      Explore
+                    </Link>
+                  ) : (
+                    <button className="px-4 py-2 bg-green-500/80 text-white rounded-full hover:bg-green-600 transition cursor-not-allowed">
+                      Explore
+                    </button>
+  )}
+</div>
+
               </div>
             </div>
           ))}

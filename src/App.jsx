@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -7,6 +8,12 @@ import DestinationDetail from "./pages/DestinationDetail";
 import Events from "./pages/Events";
 import Marketplace from "./pages/Marketplace";
 import Plan from "./pages/Plan";
+import Tribal from "./pages/tribal";
+import Paintings from "./pages/paintings";
+import Handwoven from "./pages/handwoven";
+import Hotels from "./pages/hotels";
+import Guides from "./pages/guides";
+import Login from "./pages/login";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +35,18 @@ export default function App() {
           <Link to="/events">Events</Link>
           <Link to="/marketplace">Marketplace</Link>
           <Link to="/plan">Plan Your Trip</Link>
+          <Link
+              to="/login"
+              className="px-4 py-2 bg-white text-green-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              Login
+          </Link>
+          <Link
+              to="/register"
+              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+            >
+              Register
+          </Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -81,6 +100,12 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/plan" element={<Plan />} />
+        <Route path="/tribal" element={<Tribal />} />
+        <Route path="/paintings" element={<Paintings />} />
+        <Route path="/handwoven" element={<Handwoven />} />
+        <Route path="/guides" element={<Guides />} />
+        <Route path="/hotels" element={<Hotels />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       {/* Chatbot Section */}
