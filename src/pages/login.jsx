@@ -1,71 +1,73 @@
-// src/App.jsx
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      className="w-full h-screen flex items-center justify-center bg-cover bg-center relative"
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1400&q=80')",
+        backgroundImage: "url('src/assets/backg.jpg')", // ✅ Jungle background
       }}
     >
-      <div className="w-full max-w-md bg-white/30 backdrop-blur-lg rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-white mb-6">
-          {isLogin ? "Welcome Back 👋" : "Create Account ✨"}
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+      {/* Login Card */}
+      <div className="relative w-full max-w-md bg-white/10 backdrop-blur-2xl rounded-3xl shadow-2xl p-8 border border-green-200/20 hover:shadow-green-400/30 transition-all duration-500">
+        <h1 className="text-3xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-200 via-emerald-300 to-teal-400 drop-shadow-lg mb-6">
+          {isLogin ? "Welcome Back Explorer 🌿" : "Join the Adventure ✨"}
         </h1>
 
-        <form className="space-y-4">
+        <form className="space-y-5">
           {!isLogin && (
             <div>
-              <label className="block text-sm font-medium text-white mb-1">
+              <label className="block text-sm font-semibold text-green-100 mb-1">
                 Name
               </label>
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full px-4 py-2 rounded-lg border border-green-300/30 focus:outline-none focus:ring-2 focus:ring-green-400 bg-white/20 text-white placeholder-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white/30"
               />
             </div>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-white mb-1">
+            <label className="block text-sm font-semibold text-green-100 mb-1">
               Email
             </label>
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-2 rounded-lg border border-green-300/30 focus:outline-none focus:ring-2 focus:ring-green-400 bg-white/20 text-white placeholder-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white/30"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-white mb-1">
+            <label className="block text-sm font-semibold text-green-100 mb-1">
               Password
             </label>
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full px-4 py-2 rounded-lg border border-green-300/30 focus:outline-none focus:ring-2 focus:ring-green-400 bg-white/20 text-white placeholder-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white/30"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition"
+            className="w-full bg-gradient-to-r from-green-400 via-emerald-500 to-teal-600 hover:from-teal-600 hover:to-green-400 transition-all duration-500 text-white font-bold py-2 rounded-lg text-lg shadow-lg hover:shadow-emerald-400/40 hover:scale-105"
           >
             {isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
 
-        <p className="text-sm text-white text-center mt-6">
+        <p className="text-sm text-green-100 text-center mt-6">
           {isLogin ? "Don’t have an account?" : "Already have an account?"}{" "}
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-blue-200 hover:underline"
+            className="text-teal-300 hover:text-green-200 font-semibold underline-offset-2 hover:underline transition-all"
           >
             {isLogin ? "Sign Up" : "Login"}
           </button>
