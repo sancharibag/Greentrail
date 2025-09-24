@@ -23,4 +23,5 @@ class HotelAdmin(admin.ModelAdmin):
 admin.site.register(Guide)
 admin.site.register(Driver)
 admin.site.register(Transaction)
+admin.site.register(Item)
 
