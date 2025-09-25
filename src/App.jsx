@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -10,9 +11,22 @@ import Plan from "./pages/Plan";
 import Tribal from "./pages/tribal";
 import Paintings from "./pages/paintings";
 import Handwoven from "./pages/handwoven";
-import Hotels from "./pages/hotels";
-import Guides from "./pages/guides";
+import Hotels from "./pages/Hotels";
+import GuidePage from "./pages/GuidePage";
+import Guides from "./pages/Guides";
+import Transport from "./pages/transports";
+import Car from "./pages/Car";
+import CarPage from "./pages/CarPage";
+import Buses from "./pages/Bus";
+import BusPage from "./pages/BusPage";
+import Wishlist from "./pages/wishlist";
+import BookingOrder from "./pages/booking_Order";
 import Login from "./pages/login";
+import ProductPage from "./pages/Products";
+import Cart from "./pages/Cart";
+import Orders from "./pages/orders";
+import HotelPage from "./pages/HotelPage";
+
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,10 +118,27 @@ export default function App() {
             <Route path="/plan" element={<Plan />} />
             <Route path="/tribal" element={<Tribal />} />
             <Route path="/paintings" element={<Paintings />} />
-            <Route path="/handwoven" element={<Handwoven />} />
-            <Route path="/guides" element={<Guides />} />
-            <Route path="/hotels" element={<Hotels />} />
+            <Route path="/handwoven" element={<Handwoven />} />          
+            <Route path="/Guides" element={<Guides />} />
+            <Route path="/GuidePage" element={<GuidePage />} />
+            <Route path="/guide/:id" element={<GuidePage />} />
+            <Route path="/Hotels" element={<Hotels />} />
+            <Route path="/transports" element={<Transport />} />
+            <Route path="/Bus" element={<Buses />} />
+            <Route path="/BusPage" element={<BusPage />} />
+            <Route path="/buses/:id" element={<BusPage />} />
+            <Route path="/car" element={<Car />} />
+            <Route path="/CarPage" element={<CarPage />} />
+            <Route path="/car/:id" element={<CarPage />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/booking-order" element={<BookingOrder />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/Products" element={<ProductPage />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/product/:category/:id" element={<ProductPage />} />
+            <Route path="/HotelPage" element={<HotelPage />} />
+            <Route path="/hotel/:id" element={<HotelPage />} />
           </Routes>
         </div>
 
